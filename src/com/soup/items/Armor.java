@@ -1,4 +1,4 @@
-package com.soup;
+package com.soup.items;
 
 public class Armor extends Item {
 

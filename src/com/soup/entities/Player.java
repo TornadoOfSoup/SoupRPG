@@ -1,29 +1,30 @@
-package com.soup;
+package com.soup.entities;
 
-import com.soup.Utils;
+import com.soup.items.Armor;
+import com.soup.items.Item;
+import com.soup.main.Utils;
+import com.soup.items.Weapon;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class Player extends Entity {
 
-    private ArrayList<Item> inventory;
-    private ArrayList<Armor> equippedArmor;
-    private Optional<Weapon> equippedWeapon;
+    private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Armor> equippedArmor = new ArrayList<>();
+    private Optional<Weapon> equippedWeapon = Optional.empty();
 
-    private int hp, atk, def, spd, inventorySize;
+    private int inventorySize;
 
     public Player(String name) {
         setName(name);
 
         setStats(Utils.randomIntBetweenBounds(90, 120), Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(18, 23));
-        equippedArmor = new ArrayList<>();
-        equippedWeapon = Optional.empty();
-        inventory = new ArrayList<>();
+        updateStats();
 
         setInventorySize(15);
 
-        updateStats();
+        hp = getMaxHp(); //HP needs to be initialized to maxHp or it defaults to 0
     }
 
     public void updateStats() {
@@ -37,9 +38,9 @@ public class Player extends Entity {
         int tempHp = getBaseHp();
         //TODO something with armor and accessories maybe
         //TODO something with buffs
-        hp = tempHp;
+        maxHp = tempHp;
     }
-        
+
     public void updateAtkStat() {
         int tempAtk = getBaseAtk();
         if (equippedWeapon.isPresent()) {
@@ -57,7 +58,7 @@ public class Player extends Entity {
         //TODO something with buffs
         def = tempDef;
     }
-    
+
     public void updateSpdStat() {
         int tempSpd = getBaseSpd();
         //TODO something with accessories and armor things maybe
@@ -125,6 +126,14 @@ public class Player extends Entity {
         this.hp = hp;
     }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
     public int getAtk() {
         return atk;
     }
@@ -156,4 +165,5 @@ public class Player extends Entity {
     public void setInventorySize(int inventorySize) {
         this.inventorySize = inventorySize;
     }
+
 }
