@@ -7,20 +7,21 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Entity {
-    protected int baseHp, baseAtk, baseDef, baseSpd, maxHp, hp, atk, def, spd;
+    protected int baseHp, baseMp, baseAtk, baseDef, baseSpd, maxHp, hp, maxMp, mp, atk, def, spd;
     protected String name;
     protected ArrayList<EntityAction> actions = new ArrayList<>();
 
     public Entity() {
         name = "no name";
-        setStats(0, 0, 0, 0);
+        setStats(0, 0, 0, 0, 0);
     }
 
-    public Entity(String name, int baseHp, int baseAtk, int baseDef, int baseSpd) {
+    public Entity(String name, int baseHp, int baseAtk, int baseDef, int baseSpd, int baseMp) {
         this.name = name;
-        setStats(baseHp, baseAtk, baseDef, baseSpd);
+        setStats(baseHp, baseAtk, baseDef, baseSpd, baseMp);
         updateStats();
-        hp = getMaxHp(); //HP needs to be initialized to maxHp or it defaults to 0
+        hp = getMaxHp(); //HP and MP need to be initialized or they default to 0
+        mp = getMaxMp();
     }
 
     public void updateStats() {
@@ -28,6 +29,7 @@ public class Entity {
         updateAtkStat();
         updateDefStat();
         updateSpdStat();
+        updateMpStat();
     }
 
     public void updateHpStat() {
@@ -54,6 +56,36 @@ public class Entity {
         //TODO something with accessories and armor things maybe
         //TODO something with buffs
         spd = tempSpd;
+    }
+
+    public void updateMpStat() {
+        int tempMp = getBaseMp();
+        //TODO something with accessories maybe
+        maxMp = baseMp;
+    }
+
+    public int getMaxMp() {
+        return maxMp;
+    }
+
+    public void setMaxMp(int maxMp) {
+        this.maxMp = maxMp;
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
+
+    public int getBaseMp() {
+        return baseMp;
+    }
+
+    public void setBaseMp(int baseMp) {
+        this.baseMp = baseMp;
     }
 
     public String getName() {
@@ -157,11 +189,12 @@ public class Entity {
         this.baseSpd = baseSpd;
     }
 
-    public void setStats(int baseHp, int baseAtk, int baseDef, int baseSpd) {
+    public void setStats(int baseHp, int baseAtk, int baseDef, int baseSpd, int baseMp) {
         this.baseHp = baseHp;
         this.baseAtk = baseAtk;
         this.baseDef = baseDef;
         this.baseSpd = baseSpd;
+        this.baseMp = baseMp;
     }
 
     @Override

@@ -17,24 +17,26 @@ public class Enemy extends Entity {
     public Enemy(String name) {
         setName(name);
 
-        setStats(20, 20, 20, 20);
+        setStats(20, 20, 20, 20, 20);
         updateStats();
 
         hp = getMaxHp();
+        mp = getMaxMp();
     }
 
-    public Enemy(String name, int hp, int atk, int def, int spd) {
+    public Enemy(String name, int hp, int atk, int def, int spd, int mp) {
         setName(name);
 
-        setStats(hp, atk, def, spd);
+        setStats(hp, atk, def, spd, mp);
         updateStats();
 
         this.hp = getMaxHp();
+        this.mp = getMaxMp();
     }
 
     public Enemy(Enemy enemy) {
         name = enemy.name;
-        setStats(enemy.baseHp, enemy.baseAtk, enemy.baseDef, enemy.baseSpd);
+        setStats(enemy.baseHp, enemy.baseAtk, enemy.baseDef, enemy.baseSpd, enemy.baseMp);
         updateStats();
         drops = enemy.drops;
         equippedArmor = enemy.equippedArmor;
@@ -47,6 +49,7 @@ public class Enemy extends Entity {
         updateAtkStat();
         updateDefStat();
         updateSpdStat();
+        updateMpStat();
     }
 
     public void updateMaxHpStat() {

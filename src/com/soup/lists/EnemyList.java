@@ -11,7 +11,7 @@ public class EnemyList {
     public static ArrayList<Enemy> getListOfEnemies() {
         ArrayList<Enemy> enemies = new ArrayList<>();
 
-        Enemy goblin = new Enemy("Goblin", 40, 10, 10, 10);
+        Enemy goblin = new Enemy("Goblin", 40, 10, 10, 10, 0);
         goblin.addAction(ATTACK);
 
         enemies.add(goblin);

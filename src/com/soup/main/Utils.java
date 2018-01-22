@@ -49,6 +49,28 @@ public class Utils {
     }
 
     public static String viewPlayerStats(Player player) {
-        return ""; //TODO make this work
+        return String.format("Name: %s\n" +
+                "HP: %d/%d  MP: %d/%d\n" +
+                "Atk: %-8d Def: %-8d Spd: %-8d\n", player.getName(), player.getHp(), player.getMaxHp(), player.getMp(), player.getMaxMp(), player.getAtk(), player.getDef(), player.getSpd());
     }
+
+    public static String multiplyString(String string, int times) {
+        String returnString = "";
+        for (int i = 0; i < times; i++) {
+            returnString += string;
+        }
+        return returnString;
+    }
+
+    public static float randomNumberBetweenTwoFloats (float f1, float f2) {
+        f1 *= 10000;
+        f2 *= 10000;
+
+        int one = (int) f1;
+        int two = (int) f2;
+
+        int randInt = rand.nextInt(two - one) + one;
+        return (float) randInt / 10000;
+    }
+
 }

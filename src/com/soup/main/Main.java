@@ -9,6 +9,7 @@ import com.soup.items.Item;
 import com.soup.items.Weapon;
 import com.soup.lists.ActionList;
 import com.soup.lists.EnemyList;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 import java.util.*;
 
@@ -51,6 +52,7 @@ public class Main {
                 System.out.println("PLACEHOLDER FOR XP AND OTHER POST GAME STUFF\n");
             } else if (result.equals(BattleResult.DEFEAT)) {
                 System.out.println("YOU DIED"); //TODO maybe make this better
+                System.exit(0);
             } else if (result.equals(BattleResult.DRAW)) {
                 System.out.println("The battle ended in a draw!");
             } else if (result.equals(BattleResult.OTHER)) {
@@ -135,11 +137,19 @@ public class Main {
             int actionIndex = 0, targetIndex = 0;
             
             while(!validDecisionMade) {
-                System.out.println("Select an action by typing its number.\n");
-                actionIndex = scanner.nextInt(); //TODO add proper exception handling here
-                if (actionIndex >= 1 && actionIndex <= actions.size()) {
-                    validDecisionMade = true;
+                System.out.println("Select an action by typing its number.\n"); //TODO figure out why this calls twice each turn
+                String input = scanner.nextLine();
+                try {
+                    actionIndex = Integer.parseInt(input);
+                    if (actionIndex >= 1 && actionIndex <= actions.size()) {
+                        validDecisionMade = true;
+                    }
+                } catch (NumberFormatException e) {
+                    if (input.equalsIgnoreCase("$viewStats")) {
+                        System.out.println(Utils.viewPlayerStats(player));
+                    }
                 }
+
             }
 
             Utils.printList(entitiesInBattle);

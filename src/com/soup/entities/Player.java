@@ -19,12 +19,14 @@ public class Player extends Entity {
     public Player(String name) {
         setName(name);
 
-        setStats(Utils.randomIntBetweenBounds(90, 120), Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(18, 23));
+        setStats(Utils.randomIntBetweenBounds(90, 120), Utils.randomIntBetweenBounds(18, 23),
+                Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(18, 23), Utils.randomIntBetweenBounds(8, 15));
         updateStats();
 
         setInventorySize(15);
 
-        hp = getMaxHp(); //HP needs to be initialized to maxHp or it defaults to 0
+        hp = getMaxHp(); //HP and MP need to be initialized or they default to 0
+        mp = getMaxMp();
     }
 
     public void updateStats() {
@@ -32,6 +34,7 @@ public class Player extends Entity {
         updateAtkStat();
         updateDefStat();
         updateSpdStat();
+        updateMpStat();
     }
 
     public void updateHpStat() {

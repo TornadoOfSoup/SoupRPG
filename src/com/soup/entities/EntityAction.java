@@ -1,5 +1,7 @@
 package com.soup.entities;
 
+import com.soup.main.Utils;
+
 import java.util.ArrayList;
 
 public class EntityAction {
@@ -19,7 +21,7 @@ public class EntityAction {
 
     public void onUse(Entity user, Entity target) {
         System.out.printf("%s attacks %s!\n", user, target);
-        double damage = 10 + (user.getAtk() - target.getDef());
+        double damage = (Utils.randomIntBetweenBounds(8, 12) + (user.getAtk() - target.getDef())) * Utils.randomNumberBetweenTwoFloats(0.9f, 1.1f);
         target.setHp((int) (target.getHp() - damage));
         System.out.printf("%s took %d damage!\n", target, (int) damage);
     }
