@@ -1,6 +1,7 @@
 package com.soup.main;
 
 import com.soup.entities.EntityAction;
+import com.soup.entities.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,5 +46,9 @@ public class Utils {
             i++;
         }
         System.out.println(builder.toString());
+    }
+
+    public static String viewPlayerStats(Player player) {
+        return ""; //TODO make this work
     }
 }
