@@ -21,7 +21,7 @@ public class EntityAction {
 
     public void onUse(Entity user, Entity target) {
         System.out.printf("%s attacks %s!\n", user, target);
-        double damage = (Utils.randomIntBetweenBounds(8, 12) + (user.getAtk() - target.getDef())) * Utils.randomNumberBetweenTwoFloats(0.9f, 1.1f);
+        double damage = (Utils.randomIntBetweenBounds(14, 20) + (user.getAtk() - target.getDef())) * Utils.randomNumberBetweenTwoFloats(0.9f, 1.1f);
         target.setHp((int) (target.getHp() - damage));
         System.out.printf("%s took %d damage!\n", target, (int) damage);
     }

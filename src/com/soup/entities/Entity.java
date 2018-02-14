@@ -6,6 +6,8 @@ import com.soup.main.Utils;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import static com.soup.lists.ActionList.ATTACK;
+
 public class Entity {
     protected int baseHp, baseMp, baseAtk, baseDef, baseSpd, maxHp, hp, maxMp, mp, atk, def, spd;
     protected String name;
@@ -14,6 +16,7 @@ public class Entity {
     public Entity() {
         name = "no name";
         setStats(0, 0, 0, 0, 0);
+        addAction(ATTACK);
     }
 
     public Entity(String name, int baseHp, int baseAtk, int baseDef, int baseSpd, int baseMp) {
@@ -22,6 +25,7 @@ public class Entity {
         updateStats();
         hp = getMaxHp(); //HP and MP need to be initialized or they default to 0
         mp = getMaxMp();
+        addAction(ATTACK);
     }
 
     public void updateStats() {

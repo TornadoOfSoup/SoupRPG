@@ -34,7 +34,6 @@ public class Main {
         String playerName = enterPlayerName();
 
         player = new Player(playerName);
-        player.addAction(ATTACK);
         gameLoop();
     }
 
@@ -88,7 +87,7 @@ public class Main {
             
             //TODO interate through entity speed values and build a queue of when they take their turn
             entityTurn(player, entitiesInBattle);
-            for (int i = 0; i < enemies.size() - 1; i++) {
+            for (int i = 0; i < enemies.size(); i++) {
                 if (getBattleResult(player, enemies).equals(Optional.empty())) {
                     entityTurn(enemies.get(i), entitiesInBattle);
                     try {
@@ -137,8 +136,8 @@ public class Main {
             int actionIndex = 0, targetIndex = 0;
             
             while(!validDecisionMade) {
-                System.out.println("Select an action by typing its number.\n"); //TODO figure out why this calls twice each turn
-                String input = scanner.nextLine();
+                System.out.println("Select an action by typing its number.\n");
+                String input = scanner.next();
                 try {
                     actionIndex = Integer.parseInt(input);
                     if (actionIndex >= 1 && actionIndex <= actions.size()) {
